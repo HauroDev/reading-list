@@ -16,7 +16,7 @@ export const ThemeContext = createContext<ThemeContextProps>({
 
 export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(
-    (localStorage.getItem('theme') as Theme) || 'light'
+    (localStorage.getItem('theme') as Theme) || 'dark'
   )
 
   const toggleTheme = () => {

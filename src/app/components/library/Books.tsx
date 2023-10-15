@@ -1,15 +1,22 @@
-import { useSelector } from 'react-redux'
 import BookCard from './BookCard'
-import { RootState } from '../../redux/store/store'
+import { useLibrarySelector } from '../../store/hooks/useLibrarySelector'
+import { useEffect } from 'react'
+import { useLibraryDispatch } from '../../store/hooks/useLibraryDispatch'
+import { fetchBooks } from '../../store/services/fetchBooks'
 
 const Books = (): JSX.Element => {
-  const booksList = useSelector((state: RootState) => state.library.library)
+  const booksList = useLibrarySelector()
+  const dispatch = useLibraryDispatch()
+
+  useEffect(() => {
+    dispatch(fetchBooks())
+  }, [dispatch])
 
   return (
     <section className='w-full grid place-content-center p-5'>
-      <ul className='grid md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-5 place-items-center'>
+      <ul className='grid gap-x-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-5 place-content-center'>
         <h2 className='col-span-full text-4xl italic text-center'>Books</h2>
-        {booksList.map((book) => (
+        {booksList.map((book: Book) => (
           <BookCard
             key={book.book.ISBN}
             title={book.book.title}

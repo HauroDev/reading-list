@@ -4,7 +4,7 @@ import App from './app/App.tsx'
 import './index.css'
 import { ThemeProvider } from './app/contexts/ThemeContext.tsx'
 import { Provider } from 'react-redux'
-import store from './app/redux/store/store.tsx'
+import store from './app/store/store.tsx'
 
 const root = document.getElementById('root') as HTMLElement
 

@@ -14,7 +14,7 @@ interface BookProps {
 
 type BookCardProps = Pick<
   BookProps,
-  'title' | 'genre' | 'cover' | 'year' | 'author'
+  'title' | 'genre' | 'cover' | 'year' | 'author' | 'ISBN'
 >
 
 interface Book {

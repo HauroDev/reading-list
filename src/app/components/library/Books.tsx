@@ -2,10 +2,10 @@ import BookCard from './BookCard'
 import { useLibrarySelector } from '../../store/hooks/useLibrarySelector'
 import { useEffect } from 'react'
 import { useLibraryDispatch } from '../../store/hooks/useLibraryDispatch'
-import { fetchBooks } from '../../store/services/fetchBooks'
+import { fetchBooks } from '../../store/slices/library/async/fetchBooks'
 
 const Books = (): JSX.Element => {
-  const booksList = useLibrarySelector()
+  const { books: booksList } = useLibrarySelector()
   const dispatch = useLibraryDispatch()
 
   useEffect(() => {
@@ -19,6 +19,7 @@ const Books = (): JSX.Element => {
         {booksList.map((book: Book) => (
           <BookCard
             key={book.book.ISBN}
+            ISBN={book.book.ISBN}
             title={book.book.title}
             genre={book.book.genre}
             cover={book.book.cover}

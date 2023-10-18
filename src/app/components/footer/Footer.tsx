@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className='p-2 mx-2 border-t-2 dark:border-gray-400 border-gray-800'>
+    <footer className='p-2 mx-2 border-t-2 dark:border-gray-400 border-gray-800 mt-auto'>
       <p className='text-center mb-2'>Redes Sociales</p>
       <ul className='flex flex-col gap-2 items-center sm:flex-row sm:justify-around sm:items-center'>
         <li>

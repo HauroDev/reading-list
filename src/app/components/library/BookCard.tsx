@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const BookCard = ({
   title,
   genre,
   cover,
   year,
-  author
+  author,
+  ISBN
 }: BookCardProps): JSX.Element => {
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isAdded, setIsAdded] = useState<boolean>(false)
@@ -28,13 +30,15 @@ const BookCard = ({
       } relative flex flex-col items-center rounded-md dark:shadow-gray-800 shadow-gray-400 shadow-xl hover:shadow-none transition-all duration-200 h-[20rem] w-[15rem]`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
-      <h2
-        className={`${
-          isHovered ? 'opacity-100' : 'opacity-0'
-        } absolute top-0 left-0 w-full text-center bg-white dark:bg-gray-600 bg-opacity-75 dark:bg-opacity-60 z-10 transition-opacity duration-200`}
-        data-testid='title'>
-        {title}
-      </h2>
+      <Link to={`/books/${ISBN}`}>
+        <h2
+          className={`${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          } absolute top-0 left-0 w-full text-center bg-white dark:bg-gray-600 bg-opacity-75 dark:bg-opacity-60 z-10 transition-opacity duration-200`}
+          data-testid='title'>
+          {title}
+        </h2>
+      </Link>
       {/* Agregar svg's para agregar y quitar el libro de la lista y sus respectivos colore (fill-[color]) */}
       <div
         className={`${

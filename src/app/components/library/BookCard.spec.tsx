@@ -1,6 +1,15 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest'
+import { describe, test, expect, beforeEach, afterEach } from 'vitest'
 import BookCard from './BookCard'
 import { render, screen, cleanup, fireEvent } from '@testing-library/react'
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import BookDetail from './BookDetail'
+import { Provider } from 'react-redux'
+import store from '../../store/store'
+
+/**
+ * @vitest-environment jsdom
+ */
 
 describe('BookCard', () => {
   const data: BookCardProps = {
@@ -9,6 +18,7 @@ describe('BookCard', () => {
     cover:
       'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1566425108i/33.jpg',
     year: 1954,
+    ISBN: '978-0618640157',
     author: {
       name: 'J.R.R. Tolkien',
       otherBooks: ['El Hobbit', 'El Silmarillion']
@@ -16,52 +26,74 @@ describe('BookCard', () => {
   }
 
   beforeEach(() => {
-    render(<BookCard {...data} />)
+    render(
+      <Provider store={store}>
+        <Routes>
+          <Route
+            path='/'
+            element={<BookCard {...data} />}
+          />
+          <Route
+            path='/books/:ISBN'
+            element={<BookDetail />}
+          />
+        </Routes>
+      </Provider>,
+      {
+        wrapper: BrowserRouter
+      }
+    )
   })
 
   afterEach(() => {
     cleanup()
   })
 
-  it('should render the component', () => {
+  test('should render the component', () => {
     const card = screen.getByTestId('book-card')
     expect(card).toBeInTheDocument()
   })
 
-  it('should render the title', () => {
+  test('should render the title', () => {
     const title = screen.getByTestId('title')
     expect(title).toHaveTextContent(data.title)
   })
 
-  it('should render the cover', () => {
+  test('should render the cover', () => {
     const cover = screen.getByTestId('cover')
     expect(cover).toHaveAttribute('src', data.cover)
   })
 
-  it('should render the genre', () => {
+  test('should render the genre', () => {
     const genre = screen.getByTestId('genre')
     expect(genre).toHaveTextContent(data.genre)
   })
 
-  it('should render year of publish', () => {
+  test('should render year of publish', () => {
     const year = screen.getByTestId('year')
     expect(year).toBeInTheDocument()
   })
 
-  it('should render the author', () => {
+  test('should render the author', () => {
     const author = screen.getByTestId('author')
     expect(author).toHaveTextContent(data.author.name)
   })
 
-  it('should render an "addition prompt" in the component', () => {
-    const button = screen.getByTestId('add')
-    expect(button).toBeInTheDocument()
+  test('should render an "addition prompt" in the component', () => {
+    const addIndicator = screen.getByTestId('add')
+    expect(addIndicator).toBeInTheDocument()
   })
 
-  it('should render a "subtraction prompt" on the cover after clicking it', () => {
+  test('should render a "subtraction prompt" on the cover after clicking it', () => {
     fireEvent.click(screen.getByTestId('cover'))
 
-    const deleteButton = screen.getByTestId('remove')
-    expect(deleteButton).toBeInTheDocument()
+    const removeIndicator = screen.getByTestId('remove')
+    expect(removeIndicator).toBeInTheDocument()
+  })
+
+  test('should redirect to the book detail page', () => {
+    fireEvent.click(screen.getByTestId('title'))
+
+    expect(screen.getByTestId('book-detail')).toBeInTheDocument()
   })
 })

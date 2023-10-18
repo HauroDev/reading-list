@@ -1,13 +1,13 @@
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
-import Books from './components/library/Books'
+import PrincipalRouter from './components/routers/PrincipalRouter'
 
 function App(): JSX.Element {
   return (
-    <div className='text-gray-800 dark:text-gray-200 dark:bg-gray-950'>
+    <div className='text-gray-800 dark:text-gray-200 dark:bg-gray-950 flex flex-col h-screen'>
       <Header />
-      <main>
-        <Books />
+      <main className='flex-1'>
+        <PrincipalRouter />
       </main>
       <Footer />
     </div>

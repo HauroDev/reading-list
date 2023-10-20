@@ -35,8 +35,6 @@ export const librarySlice = createSlice({
       const book = state.books.find((obj) => obj.book.ISBN === action.payload)
         ?.book
 
-      console.log(book)
-
       return {
         ...state,
         bookDetail: {

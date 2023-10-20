@@ -13,7 +13,9 @@ const Books = (): JSX.Element => {
   }, [dispatch])
 
   return (
-    <section className='w-full grid place-content-center p-5'>
+    <section
+      data-testid='books'
+      className='w-full grid place-content-center p-5'>
       <ul className='grid gap-x-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-5 place-content-center'>
         <h2 className='col-span-full text-4xl italic text-center'>Books</h2>
         {booksList.map((book: Book) => (

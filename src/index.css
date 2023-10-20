@@ -5,3 +5,7 @@
 html {
   @apply select-none;
 }
+
+body {
+  @apply text-gray-800 bg-white dark:text-gray-200 dark:bg-gray-950;
+}

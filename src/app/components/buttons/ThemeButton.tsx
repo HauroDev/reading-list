@@ -5,7 +5,7 @@ const ThemeButton = () => {
 
   return (
     <button
-      className='p-2 grid grid-cols-2 place-items-center gap-2'
+      className='p-2 grid grid-rows-2 place-items-center gap-1'
       onClick={toggleCurrentTheme}>
       <div className='flex justify-center items-center border-[1px] dark:border-gray-400 border-gray-800 rounded-full w-8 h-8'>
         {currentTheme === 'light' ? (

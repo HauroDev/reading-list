@@ -94,6 +94,6 @@ describe('BookCard', () => {
   test('should redirect to the book detail page', () => {
     fireEvent.click(screen.getByTestId('title'))
 
-    expect(screen.getByTestId('book-detail')).toBeInTheDocument()
+    expect(window.location.pathname).toBe('/books/978-0618640157')
   })
 })

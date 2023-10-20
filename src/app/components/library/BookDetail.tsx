@@ -16,17 +16,36 @@ const BookDetail = () => {
   }, [])
 
   return (
-    <div data-testid='book-detail'>
-      <h2>{book?.title}</h2>
+    <div
+      data-testid='book-detail'
+      className='flex flex-row justify-center items-center gap-2'>
       <img
+        className='w-[10rem]'
         src={book?.cover}
         alt={book?.title}
       />
-      <p>{book?.synopsis}</p>
-      <p>{book?.year}</p>
-      <p>{book?.author.name}</p>
-      <p>{book?.author.otherBooks.join(', ')}</p>
-      <p>{book?.genre}</p>
+      <div className='flex flex-col max-w-lg'>
+        <h2 className='text-2xl font-bold text-stone-500 duration-200'>
+          {book?.title}
+        </h2>
+        <p
+          className='text-sm text-cyan-300 my-1'
+          title='Autor del libro'>
+          Autor: {book?.author.name}
+        </p>
+        <p className='mb-6'>
+          <span title='Año de publicación'>{book?.year}</span> -{' '}
+          <span title='Número de páginas'>{book?.pages}</span>{' '}
+          {book?.pages > 1 ? 'páginas' : 'página'}
+        </p>
+        <p className='text-blue-400'>{book?.author?.otherBooks.join(' - ')}</p>
+        <p className='w-[50ch] mb-3'>{book?.synopsis}</p>
+        <p>
+          <span className='font-bold bg-gradient-to-br from-cyan-400 via-blue-500 to-sky-600 rounded-xl px-2 py-1'>
+            {book?.genre}
+          </span>
+        </p>
+      </div>
     </div>
   )
 }

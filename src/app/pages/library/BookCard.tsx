@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import PlusCircle from '../icons/PlusCircle'
-import XCircle from '../icons/XCircle'
+import PlusCircle from '../../components/icons/PlusCircle'
+import XCircle from '../../components/icons/XCircle'
 
 const BookCard = ({
   title,
@@ -29,9 +29,12 @@ const BookCard = ({
       data-testid='book-card'
       className={`${
         isAdded ? 'brightness-[.45]' : 'brightness-100'
-      } relative flex flex-col items-center rounded-md dark:shadow-gray-800 shadow-gray-400 shadow-xl hover:shadow-none transition-all duration-200 h-[20rem] w-[15rem]`}
+      } relative flex flex-col items-center rounded-md dark:shadow-gray-800 shadow-gray-400 shadow-xl hover:shadow-none transition-all duration-200 w-[15rem]`}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleMouseEnter}
+      onTouchEnd={handleMouseLeave}
+      onClick={toggleIsAdded}>
       <NavLink
         className={`${
           isHovered ? 'opacity-100' : 'opacity-0'
@@ -60,12 +63,11 @@ const BookCard = ({
         src={cover}
         alt={title}
         title={title}
-        onClick={toggleIsAdded}
       />
       <div
         className={`${
           isHovered ? 'opacity-100' : 'opacity-0'
-        } absolute bottom-0 left-0 w-full bg-white dark:bg-gray-600 bg-opacity-75 dark:bg-opacity-50 z-10 transition-opacity duration-200 p-2`}>
+        } absolute bottom-0 left-0 w-full bg-white dark:bg-gray-600 bg-opacity-75 dark:bg-opacity-50 z-10 transition-opacity duration-200 p-2 text-sm`}>
         <p data-testid='genre'>Genero: {genre}</p>
         <p data-testid='year'>Año: {year}</p>
         <p data-testid='author'>Autor: {author.name}</p>

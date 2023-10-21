@@ -4,9 +4,9 @@ import XIcon from '../icons/webs/XIcon'
 
 const Footer = () => {
   return (
-    <footer className='p-2 mx-2 border-t-2 dark:border-gray-400 border-gray-800 mt-auto'>
+    <footer className='pb-5 m-5 border-t-2 dark:border-gray-400 border-gray-800 mt-auto'>
       <p className='text-center mb-2'>Redes Sociales</p>
-      <ul className='flex flex-col gap-2 items-center sm:flex-row sm:justify-around sm:items-center'>
+      <ul className='px-5 flex flex-col sm:gap-2 gap-4 items-center sm:flex-row sm:justify-around sm:items-center'>
         <li>
           <a
             href='https://www.instagram.com/vjaviertaype'
@@ -31,7 +31,7 @@ const Footer = () => {
             className='flex flex-row justify-center items-center gap-2 hover:underline'
             target='_blank'
             rel='noreferrer'>
-            <XIcon /> HauroDev
+            <XIcon /> vjaviertaype
           </a>
         </li>
       </ul>

@@ -38,7 +38,10 @@ const BookDetail = () => {
           <span title='Número de páginas'>{book?.pages}</span>{' '}
           {book?.pages > 1 ? 'páginas' : 'página'}
         </p>
-        <p className='text-blue-400'>{book?.author?.otherBooks.join(' - ')}</p>
+        <p className='text-blue-400'>
+          <span className='italic font-bold'>Otros libros:</span>{' '}
+          {book?.author?.otherBooks.join(' - ')}
+        </p>
         <p className='w-[50ch] mb-3'>{book?.synopsis}</p>
         <p>
           <span className='font-bold bg-gradient-to-br from-cyan-400 via-blue-500 to-sky-600 rounded-xl px-2 py-1'>

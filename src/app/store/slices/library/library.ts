@@ -20,7 +20,7 @@ export const librarySlice = createSlice({
     setLibrary: (state, action: PayloadAction<Book[]>) => {
       return {
         ...state,
-        library: action.payload
+        books: action.payload
       }
     },
     addBook: (state, action: PayloadAction<Book>) => {

@@ -1,10 +1,12 @@
 import { storeName } from '../../../middlewares/persistenceStorage'
 import { setLibrary } from '../library'
-import store, { AppDispatch } from '../../../store'
+import store, { AppDispatch, RootState } from '../../../store'
 
 export const fetchBooks = () =>
   async function (dispatch: AppDispatch) {
-    const storedData = JSON.parse(localStorage.getItem(storeName) as string)
+    const storedData: RootState = JSON.parse(
+      localStorage.getItem(storeName) as string
+    )
 
     if (storedData?.library.books.length) {
       return dispatch(setLibrary(storedData.library.books))

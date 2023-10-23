@@ -1,13 +1,13 @@
 import { describe, test, expect, beforeEach, afterEach } from 'vitest'
 import { screen, render, cleanup } from '@testing-library/react'
-import Books from './Books'
-import ConfigApp from '../../components/ConfigApp'
+import BooksList from './BooksList'
+import ConfigApp from '../../../components/ConfigApp'
 
-describe('Books', () => {
+describe('BooksList', () => {
   beforeEach(() => {
     render(
       <ConfigApp>
-        <Books />
+        <BooksList />
       </ConfigApp>
     )
   })
@@ -18,18 +18,13 @@ describe('Books', () => {
 
   describe('content of Books', () => {
     test('should render the title', () => {
-      const title = screen.getByText(/books/i)
+      const title = screen.getByTestId('books-title')
       expect(title).toBeInTheDocument()
     })
 
     test('should render a list of books', () => {
-      const list = screen.getByRole('list')
+      const list = screen.getByTestId('books-list')
       expect(list).toBeInTheDocument()
-    })
-
-    test('should render a reading list of books', () => {
-      const readingList = screen.getByTestId('reading-list')
-      expect(readingList).toBeInTheDocument()
     })
   })
 

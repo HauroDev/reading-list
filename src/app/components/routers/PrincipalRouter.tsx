@@ -1,7 +1,8 @@
-import { NavLink, Route, Routes } from 'react-router-dom'
-import Books from '../../pages/library/Books'
-import BookDetail from '../../pages/library/BookDetail'
+import { Route, Routes } from 'react-router-dom'
+import Library from '../../pages/library/Library'
+import BookDetail from '../../pages/library/components/BookDetail'
 import Home from '../../pages/home/Home'
+import ErrorPage from '../ErrorPage'
 
 const PrincipalRouter = () => {
   return (
@@ -12,7 +13,7 @@ const PrincipalRouter = () => {
       />
       <Route
         path='/books'
-        element={<Books />}
+        element={<Library />}
       />
       <Route
         path='/books/:ISBN'
@@ -21,15 +22,7 @@ const PrincipalRouter = () => {
       <Route>
         <Route
           path='*'
-          element={
-            <div className='flex flex-col justify-center items-center gap-2'>
-              <h2 className='text-8xl font-bold text-stone-500 '>Error 404</h2>
-              <p className='text-xl text-red-300 my-10'>
-                esta pagina no existe
-              </p>
-              <NavLink to='/books'>Volver</NavLink>
-            </div>
-          }
+          element={<ErrorPage />}
         />
       </Route>
     </Routes>

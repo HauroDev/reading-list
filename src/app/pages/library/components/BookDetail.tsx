@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useLibrarySelector } from '../../store/hooks/useLibrarySelector'
-import { useLibraryDispatch } from '../../store/hooks/useLibraryDispatch'
+import { useLibrarySelector } from '../../../store/hooks/useLibrarySelector'
+import { useLibraryDispatch } from '../../../store/hooks/useLibraryDispatch'
 import { useParams } from 'react-router-dom'
-import { setBookDetail } from '../../store/slices/library/library'
+import { setBookDetail } from '../../../store/slices/library/library'
 
 const BookDetail = () => {
   const dispatch = useLibraryDispatch()

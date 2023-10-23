@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import PlusCircle from '../../components/icons/PlusCircle'
-import XCircle from '../../components/icons/XCircle'
+import PlusCircle from '../../../../components/icons/PlusCircle'
+import XCircle from '../../../../components/icons/XCircle'
 
 const BookCard = ({
   title,

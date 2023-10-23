@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import BookCard from './BookCard'
-import BookDetail from './BookDetail'
-import store from '../../store/store'
+import BookDetail from '../BookDetail'
+import store from '../../../../store/store'
 
 /**
  * @vitest-environment jsdom

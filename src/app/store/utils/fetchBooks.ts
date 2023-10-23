@@ -1,6 +1,6 @@
-import { storeName } from '../../../middlewares/persistenceStorage'
-import { setLibrary } from '../library'
-import store, { AppDispatch, RootState } from '../../../store'
+import { storeName } from '../middlewares/persistenceStorage'
+import { setLibrary } from '../slices/library/library'
+import store, { AppDispatch, RootState } from '../store'
 
 export const fetchBooks = () =>
   async function (dispatch: AppDispatch) {
@@ -13,7 +13,7 @@ export const fetchBooks = () =>
     }
 
     try {
-      const response = await import('../../../../data/books.json')
+      const response = await import('../../data/books.json')
 
       const currentState = store.getState()
 

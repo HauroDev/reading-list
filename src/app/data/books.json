@@ -208,6 +208,21 @@
           "otherBooks": ["El horror de Dunwich", "En las montañas de la locura"]
         }
       }
+    },
+    {
+      "book": {
+        "title": "The Alchemist",
+        "genre": "Novel",
+        "cover": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR2ohAHwMTPhtEZsWZ0eDWT528HCjhpx9AHAbsb9FSOgNKM4JI9",
+        "year": 1988,
+        "author": {
+          "name": "Paulo Coelho",
+          "otherBooks": []
+        },
+        "ISBN": "978-1-534-78816-2",
+        "pages": 208,
+        "synopsis": "The Alchemist is a novel by Brazilian writer Paulo Coelho, published in 1988."
+      }
     }
   ]
 }

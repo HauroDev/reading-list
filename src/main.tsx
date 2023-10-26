@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import ConfigApp from './app/components/ConfigApp.tsx'
-import App from './app/App.tsx'
+import ConfigApp from './components/ConfigApp.tsx'
+import App from './App.tsx'
 import './index.css'
 
 const root = document.getElementById('root') as HTMLElement

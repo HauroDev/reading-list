@@ -1,23 +1,22 @@
 import { useEffect } from 'react'
 
-
 import { useParams } from 'react-router-dom'
-import { setBookDetail } from '../features/library/library'
-import { useAppDispatch, useAppSelector } from '../app/hooks'
+import { selectorLibrary, setBookDetail } from '../librarySlice'
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 
 const BookDetail = () => {
   const dispatch = useAppDispatch()
   const { ISBN } = useParams()
-  const { book } = useAppSelector(state => state.library.bookDetail)
+  const { book } = useAppSelector(selectorLibrary.selectBookDetail)
 
   useEffect(() => {
     dispatch(setBookDetail(ISBN as string))
-  }, [])
+  }, [ISBN, dispatch])
 
   return (
     <article
       data-testid='book-detail'
-      className='flex flex-row justify-center items-center gap-2'>
+      className='flex flex-col sm:flex-row justify-center items-center gap-2 p-5 sm:p-2'>
       <img
         className='w-[10rem]'
         src={book?.cover}
@@ -41,7 +40,7 @@ const BookDetail = () => {
           <span className='italic font-bold'>Otros libros:</span>{' '}
           {book?.author?.otherBooks.join(' - ')}
         </p>
-        <p className='w-[50ch] mb-3'>{book?.synopsis}</p>
+        <p className='sm:w-[50ch] mb-3'>{book?.synopsis}</p>
         <p>
           <span className='font-bold bg-gradient-to-br from-cyan-400 via-blue-500 to-sky-600 rounded-xl px-2 py-1'>
             {book?.genre}

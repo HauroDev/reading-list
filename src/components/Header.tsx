@@ -9,7 +9,7 @@ const Header = () => {
       <h1
         data-testid='principal-title'
         className='text-5xl'>
-        Learning Reading Meaning
+        Lectura Rápida S.A.
       </h1>
 
       <div className='flex flex-row justify-around items-center gap-5'>
@@ -18,13 +18,13 @@ const Header = () => {
             className='hover:underline'
             data-testid='home-link'
             to='/'>
-            Home
+            Inicio
           </NavLink>
           <NavLink
             className='hover:underline'
             data-testid='library-link'
             to='/books'>
-            Books
+            Libros
           </NavLink>
         </nav>
         <ThemeButton />

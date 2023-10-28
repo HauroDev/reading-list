@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "tsc && vite build",
     "lint": "npx eslint \"./**/*.js\" --cache --cache-strategy content --fix",
     "preview": "vite preview",

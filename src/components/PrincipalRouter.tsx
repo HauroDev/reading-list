@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Library from '../features/library/Library'
-import BookDetail from './BookDetail'
+import BookDetail from '../features/library/components/BookDetail'
 import Home from './Home'
 import ErrorPage from './ErrorPage'
 

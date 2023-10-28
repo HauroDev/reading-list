@@ -1,16 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit'
-import libraryReducer from '../features/library/library'
+import {
+  PreloadedState,
+  combineReducers,
+  configureStore
+} from '@reduxjs/toolkit'
+import libraryReducer from '../features/library/librarySlice'
 import persistenceStorage from './middlewares/persistenceStorage'
 
-const store = configureStore({
-  reducer: {
-    library: libraryReducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(persistenceStorage)
+const rootReducer = combineReducers({
+  library: libraryReducer
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export function setupStore(preloadedState?: PreloadedState<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(persistenceStorage)
+  })
+}
 
-export default store
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']
+
+export default setupStore()

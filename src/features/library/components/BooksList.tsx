@@ -1,14 +1,14 @@
-import BookCard from './BookCard'
 import { useEffect } from 'react'
-import { fetchBooks } from '../features/library/fetchBooks'
-import ListOfBooks from './ListOfBooks'
 
+import ListOfBooks from './ListOfBooks'
 import Filters from './Filters'
-import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { fetchFilters } from '../features/library/fetchFilters'
+import BookCard from './BookCard'
+
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
+import { selectorLibrary, fetchBooks, fetchFilters } from '../librarySlice'
 
 const Books = (): JSX.Element => {
-  const { filterBooks } = useAppSelector((state) => state.library)
+  const filterBooks = useAppSelector(selectorLibrary.selectFilterBooks)
 
   const dispatch = useAppDispatch()
 
@@ -20,20 +20,16 @@ const Books = (): JSX.Element => {
     }
 
     fetchingData()
-
   }, [])
 
   return (
     <article
       data-testid='books'
-      className='relative w-full flex flex-col justify-center items-center p-5 gap-2 '>
-      <h2
-        data-testid='books-title'
-        className='text-4xl italic text-center'>
-        Books
-      </h2>
+      className='relative w-[70%] flex flex-col justify-center items-center p-5 gap-2'>
+      <h2 className='text-4xl italic text-center'>Libros</h2>
       <Filters />
       <ListOfBooks
+        className='grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4'
         books={filterBooks}
         callback={(book: Book) => (
           <BookCard

@@ -1,39 +1,38 @@
 import { describe, test, expect, beforeEach, afterEach } from 'vitest'
-import { render, screen, cleanup, fireEvent } from '@testing-library/react'
-import { Route, Routes } from 'react-router-dom'
+import { screen, cleanup, fireEvent } from '@testing-library/react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import ConfigApp from './ConfigApp'
-import BookDetail from './BookDetail'
-import BookCard from './BookCard'
+import BookDetail from '../../features/library/components/BookDetail'
+import BookCard from '../../features/library/components/BookCard'
+import { renderWithProviders } from '../../utils/utils-for-test'
+
+import { act } from 'react-dom/test-utils'
+import { initialState } from './testingState'
 
 describe('BookCard', () => {
-  const data: BookCardProps = {
-    title: 'El Señor de los Anillos',
-    genre: 'Fantasía',
-    cover:
-      'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1566425108i/33.jpg',
-    year: 1954,
-    ISBN: '978-0618640157',
-    author: {
-      name: 'J.R.R. Tolkien',
-      otherBooks: ['El Hobbit', 'El Silmarillion']
-    }
-  }
+  const data: BookCardProps = initialState.books[0].book
 
   beforeEach(() => {
-    render(
-      <ConfigApp>
+    renderWithProviders(
+      <BrowserRouter>
         <Routes>
-          <Route
-            path='/'
-            element={<BookCard {...data} />}
-          />
-          <Route
-            path='/books/:ISBN'
-            element={<BookDetail />}
-          />
+          <Route path='/'>
+            <Route
+              index
+              element={<BookCard {...data} />}
+            />
+            <Route
+              path='/books/:ISBN'
+              element={<BookDetail />}
+            />
+          </Route>
         </Routes>
-      </ConfigApp>
+      </BrowserRouter>,
+      {
+        preloadedState: {
+          library: initialState
+        }
+      }
     )
   })
 
@@ -80,14 +79,18 @@ describe('BookCard', () => {
     })
 
     test('should render a "subtraction prompt" on the cover after clicking it', () => {
-      fireEvent.click(screen.getByTestId('cover'))
+      act(() => {
+        fireEvent.click(screen.getByTestId('cover'))
+      })
 
       const removeIndicator = screen.getByTestId('remove')
       expect(removeIndicator).toBeInTheDocument()
     })
 
     test('should redirect to the book detail page', () => {
-      fireEvent.click(screen.getByTestId('book-card-title'))
+      act(() => {
+        fireEvent.click(screen.getByTestId('book-card-title'))
+      })
 
       expect(window.location.pathname).toBe('/books/978-0618640157')
     })

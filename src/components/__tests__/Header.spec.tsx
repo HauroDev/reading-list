@@ -1,15 +1,23 @@
 import { afterEach, beforeEach, describe, expect, test } from 'vitest'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-//import userEvent from '@testing-library/user-event'
-import Header from './Header'
-import ConfigApp from './ConfigApp'
+import { cleanup, fireEvent, screen } from '@testing-library/react'
+import Header from '../Header'
+
+import { act } from 'react-dom/test-utils'
+import { renderWithProviders } from '../../utils/utils-for-test'
+import { BrowserRouter } from 'react-router-dom'
+import { initialState } from './testingState'
 
 describe('Header', () => {
   beforeEach(() => {
-    render(
-      <ConfigApp>
+    renderWithProviders(
+      <BrowserRouter>
         <Header />
-      </ConfigApp>
+      </BrowserRouter>,
+      {
+        preloadedState: {
+          library: initialState
+        }
+      }
     )
   })
 
@@ -19,7 +27,7 @@ describe('Header', () => {
 
   describe('content of Header', () => {
     test('should have a title', () => {
-      const title = screen.getByText(/learning reading meaning/i)
+      const title = screen.getByText(/lectura rápida s.a./i)
       expect(title).toBeInTheDocument()
     })
 
@@ -42,10 +50,14 @@ describe('Header', () => {
       const theme = localStorage.getItem('theme')
 
       if (theme === 'light') {
-        fireEvent.click(themeButton)
+        act(() => {
+          fireEvent.click(themeButton)
+        })
         expect(themeButton).toHaveClass('dark')
       } else {
-        fireEvent.click(themeButton)
+        act(() => {
+          fireEvent.click(themeButton)
+        })
         expect(themeButton).not.toHaveClass('dark')
       }
     })

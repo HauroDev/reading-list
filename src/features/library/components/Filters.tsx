@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
-import { RootState } from '../app/store'
-import { useAppDispatch } from '../app/hooks'
-import { fetchFilters } from '../features/library/fetchFilters'
+import { RootState } from '../../../app/store'
+import { useAppDispatch } from '../../../app/hooks'
+
 import {
   filterBooksByGenre,
-  filterBooksByNumberOfPages
-} from '../features/library/library'
+  filterBooksByNumberOfPages,
+  fetchFilters
+} from '../librarySlice'
 
 const Filters = () => {
   const { genres, maxNumberOfPages } = useSelector(
@@ -31,7 +32,7 @@ const Filters = () => {
 
   return (
     <div
-      className='flex flex-row justify-around items-center gap-5'
+      className='flex flex-col mb-5 sm:flex-row justify-around items-center gap-5'
       data-testid='filters'>
       <div className='flex flex-col items-center'>
         <input
@@ -43,21 +44,20 @@ const Filters = () => {
         />
         <span>{pageFilter}</span>
       </div>
-      <div>
-        <select
-          data-testid='select-genre'
-          className='bg-gray-950'
-          onChange={(e) => setGenreFilter(e.target.value)}>
-          <option value=''>All genres</option>
-          {genres.map((genre) => (
-            <option
-              key={genre}
-              value={genre}>
-              {genre}
-            </option>
-          ))}
-        </select>
-      </div>
+
+      <select
+        data-testid='select-genre'
+        className='dark:bg-gray-950 dark:border-gray-300 border-gray-800'
+        onChange={(e) => setGenreFilter(e.target.value)}>
+        <option value=''>Todos los géneros</option>
+        {genres.map((genre) => (
+          <option
+            key={genre}
+            value={genre}>
+            {genre}
+          </option>
+        ))}
+      </select>
     </div>
   )
 }

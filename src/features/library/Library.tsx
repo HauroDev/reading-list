@@ -17,7 +17,7 @@ const Library = () => {
       {windowWidth <= 768 ? (
         <>
           <button
-            className='absolute top-5 right-5 bg-blue-500 text-white p-2 rounded-md'
+            className='absolute top-5 right-5 bg-blue-600 hover:bg-blue-800 text-white w-8 h-8 rounded-full active:rotate-180 active:bg-blue-700 duration-200'
             onClick={() => setIsVisible(!isVisible)}>
             {isVisible ? '>' : '<'}
           </button>

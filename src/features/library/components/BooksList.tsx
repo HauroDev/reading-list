@@ -9,6 +9,7 @@ import { selectorLibrary, fetchBooks, fetchFilters } from '../librarySlice'
 
 const Books = (): JSX.Element => {
   const filterBooks = useAppSelector(selectorLibrary.selectFilterBooks)
+  const readingList = useAppSelector(selectorLibrary.selectReadingList)
 
   const dispatch = useAppDispatch()
 
@@ -26,7 +27,18 @@ const Books = (): JSX.Element => {
     <article
       data-testid='books'
       className='relative w-[70%] flex flex-col justify-center items-center p-5 gap-2'>
-      <h2 className='text-4xl italic text-center'>Libros</h2>
+      <h2 className='text-4xl italic text-center'>
+        <span>{filterBooks.length}</span>{' '}
+        {filterBooks.length > 1 ? 'Libros Disponibles' : 'Libro Disponible'}
+      </h2>
+
+      <p className='text-sm dark:text-gray-400 text-gray-800'>
+        {readingList.length}{' '}
+        {readingList.length > 1
+          ? 'Libros en lista de lectura'
+          : 'Libro en lista de lectura'}
+      </p>
+
       <Filters />
       <ListOfBooks
         className='grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4'

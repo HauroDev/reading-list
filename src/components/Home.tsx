@@ -5,7 +5,7 @@ const Home = () => {
     <div className='flex flex-col justify-center items-center h-full'>
       <div className='flex flex-col justify-center items-center text-center p-5'>
         <h2 className='text-2xl sm:text-4xl font-bold text-stone-500'>
-          Bienvenido a Learning Reading Meaning
+          Bienvenido a Lectura Rápida APP
         </h2>
         <p className='text-lg sm:text-xl text-cyan-700 dark:text-cyan-300 my-10 max-w-xl'>
           En esta aplicación podrás encontrar todos los libros disponibles de

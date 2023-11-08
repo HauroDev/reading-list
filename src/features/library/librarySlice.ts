@@ -101,6 +101,13 @@ export const librarySlice = createSlice({
   name: 'Library',
   initialState,
   reducers: {
+    setStateLibrary: (state, action: PayloadAction<LibraryState>) => {
+      state.books = action.payload.books
+      state.filterBooks = action.payload.filterBooks
+      state.readingList = action.payload.readingList
+      state.filters = action.payload.filters
+      state.bookDetail = action.payload.bookDetail
+    },
     setLibrary: (state, action: PayloadAction<Book[]>) => {
       state.books = action.payload
       state.filterBooks = action.payload
@@ -171,6 +178,7 @@ const { reducer, actions } = librarySlice
 
 // actions
 export const {
+  setStateLibrary,
   setLibrary,
   setBookDetail,
   addBookToReadingList,

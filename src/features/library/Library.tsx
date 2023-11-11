@@ -13,13 +13,13 @@ const Library = () => {
   }, [windowWidth])
 
   return (
-    <section className='relative w-full flex gap-2 justify-center items-start p-4 lg:w-3/5 lg:mx-auto'>
-      {windowWidth <= 768 ? (
+    <section className='relative w-full flex gap-4 justify-center items-start p-4'>
+      {windowWidth <= 640 ? (
         <>
           <button
-            className='absolute top-5 right-5 bg-blue-600 hover:bg-blue-800 text-white w-8 h-8 rounded-full active:rotate-180 active:bg-blue-700 duration-200'
+            className='fixed z-50 top-15 right-5 bg-blue-600 hover:bg-blue-800 text-white w-auto px-2 h-8 rounded-full active:bg-blue-700 duration-100'
             onClick={() => setIsVisible(!isVisible)}>
-            {isVisible ? '>' : '<'}
+            {isVisible ? 'Ocultar' : 'Mostrar'} Selección
           </button>
           {!isVisible ? <BooksList /> : <ReadingList />}
         </>

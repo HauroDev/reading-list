@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import ConfigApp from './components/ConfigApp.tsx'
 import App from './App.tsx'
 import './index.css'
+import './base.css'
 
 const root = document.getElementById('root') as HTMLElement
 

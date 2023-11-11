@@ -26,7 +26,7 @@ const Books = (): JSX.Element => {
   return (
     <article
       data-testid='books'
-      className='relative w-[70%] flex flex-col justify-center items-center p-5 gap-2'>
+      className='flex flex-col w-[60%] items-start gap-2'>
       <h2 className='text-4xl italic text-center'>
         <span>{filterBooks.length}</span>{' '}
         {filterBooks.length > 1 ? 'Libros Disponibles' : 'Libro Disponible'}
@@ -41,7 +41,7 @@ const Books = (): JSX.Element => {
 
       <Filters />
       <ListOfBooks
-        className='grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4'
+        className='grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4'
         books={filterBooks}
         callback={(book: Book) => (
           <BookCard

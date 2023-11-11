@@ -7,5 +7,9 @@ html {
 }
 
 body {
-  @apply text-gray-800 bg-white dark:text-gray-200 dark:bg-gray-950;
+  @apply text-gray-800 bg-white dark:text-gray-200 dark:bg-gray-950 w-full min-h-screen;
+}
+
+#root {
+  @apply w-full;
 }
